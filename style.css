@@ -1,0 +1,359 @@
+:root {
+  --ground: #e4e2dd; 
+  --paper: #f5f3ef; 
+  --ink: #171717; 
+  --red: #6eb9bc; 
+  --muted: #8a8681; 
+  --line: #cdcac3; 
+
+  --maxw: 1180px;
+  --gap: clamp(10px, 1.6vw, 18px);
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Archivo", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--red);
+  color: #fff;
+  padding: 10px 14px;
+  z-index: 10;
+}
+.skip:focus {
+  left: 12px;
+  top: 12px;
+}
+
+.masthead {
+  padding: clamp(28px, 6vw, 64px) clamp(18px, 5vw, 56px) clamp(20px, 3vw, 32px);
+  border-bottom: 1px solid var(--line);
+}
+.masthead-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0;
+  font-weight: 900;
+  color: var(--red);
+  font-size: clamp(2.4rem, 8vw, 5.6rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  max-width: 15ch;
+}
+
+.standfirst {
+  margin: clamp(18px, 3vw, 28px) 0 0;
+  max-width: 62ch;
+  font-size: clamp(1rem, 2.2vw, 1.22rem);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.stats {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.lookup {
+  margin-top: clamp(26px, 4vw, 40px);
+}
+.lookup-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.lookup-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.lookup-input {
+  flex: 1 1 320px;
+  min-width: 0;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 13px 15px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 0;
+}
+.lookup-input::placeholder {
+  color: var(--muted);
+  font-weight: 400;
+}
+.lookup-input:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 1px;
+}
+
+.lookup-go,
+.lookup-clear {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 13px 22px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  cursor: pointer;
+}
+.lookup-go {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
+.lookup-clear {
+  background: transparent;
+  color: var(--ink);
+}
+.lookup-go:focus-visible,
+.lookup-clear:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.results {
+  margin: 16px 0 0;
+  min-height: 1.2em;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.results .q {
+  color: var(--red);
+}
+.results .n {
+  font-variant-numeric: tabular-nums;
+}
+
+.index {
+  padding: clamp(20px, 4vw, 40px) clamp(18px, 5vw, 56px) 0;
+}
+
+.grid {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--gap);
+}
+
+.card {
+  display: block;
+  width: 100%;
+  position: relative;
+  aspect-ratio: 3 / 4;
+  perspective: 1200px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  transition:
+    opacity 0.35s ease,
+    filter 0.35s ease;
+}
+.card:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+.card-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+  border: 1px solid var(--line);
+}
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.front {
+  background: var(--paper);
+}
+.front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.front.no-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(
+    45deg,
+    #edebe6,
+    #edebe6 10px,
+    #e7e4de 10px,
+    #e7e4de 20px
+  );
+}
+.front.no-image .ph {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+  padding: 8px;
+}
+.front .tag {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 12px;
+  background: linear-gradient(
+    to top,
+    rgba(23, 23, 23, 0.72),
+    rgba(23, 23, 23, 0)
+  );
+  color: #fff;
+}
+.front .num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+.front .term {
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  padding: 15px 15px 12px;
+}
+.back .back-term {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--red);
+  margin: 0 0 10px;
+}
+.back .definition {
+  font-family: "Spectral", Georgia, serif;
+  font-size: clamp(0.95rem, 2.4vw, 1.06rem);
+  line-height: 1.34;
+  margin: 0;
+  color: var(--ink);
+  flex: 1 1 auto;
+}
+.back .source {
+  margin: 10px 0 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  font-size: 0.66rem;
+  font-weight: 500;
+  color: var(--muted);
+  font-family: "Archivo", sans-serif;
+}
+
+.card.dim {
+  opacity: 0.16;
+  filter: grayscale(1);
+  pointer-events: none;
+}
+.grid > li.hide {
+  display: none;
+}
+
+.empty-wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.empty {
+  margin: 8px 0 0;
+  font-family: "Spectral", Georgia, serif;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 40ch;
+}
+.empty .lead {
+  color: var(--red);
+  font-weight: 500;
+}
+
+.colophon {
+  max-width: var(--maxw);
+  margin: clamp(40px, 8vw, 80px) auto 0;
+  padding: 20px clamp(18px, 5vw, 56px) 40px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.colophon p {
+  margin: 0;
+  max-width: 56ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-inner {
+    transition: none;
+  }
+  .card {
+    transition: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #e4e2dd;
+    --paper: #f5f3ef;
+    --ink: #171717;
+  }
+}

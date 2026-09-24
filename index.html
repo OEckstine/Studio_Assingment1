@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>The Borrowed Identity Index | Olivia Eckstine</title>
+  <meta name="description" content="A reference of a self, assembled from images I saved but did not make." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800;900&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <a class="skip" href="#index">Skip to the index</a>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <h1 id="title" class="title"></h1>
+      <p id="standfirst" class="standfirst"></p>
+      <p id="stats" class="stats"></p>
+
+      <form id="lookup" class="lookup" autocomplete="off">
+        <label for="q" class="lookup-label">Look up a word</label>
+        <div class="lookup-row">
+          <input id="q" name="q" type="text" class="lookup-input"
+                 placeholder="home, house, body, me…" />
+          <button type="submit" class="lookup-go">Look up</button>
+          <button type="button" id="clear" class="lookup-clear" hidden>Clear</button>
+        </div>
+      </form>
+
+      <p id="results" class="results" aria-live="polite"></p>
+    </div>
+  </header>
+
+  <main id="index" class="index">
+    <ol id="grid" class="grid"></ol>
+    <div class="empty-wrap">
+      <p id="empty" class="empty" hidden></p>
+    </div>
+  </main>
+
+  <footer class="colophon">
+    <p>Compiled by Olivia Eckstine from a personal Pinterest export.
+       Every image was saved, not made. Type is borrowed too.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
