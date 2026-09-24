@@ -158,7 +158,7 @@ body {
 }
 
 .index {
-  padding: clamp(20px, 4vw, 40px) clamp(18px, 5vw, 56px) 0;
+  padding: clamp(20px, 4vw, 40px) clamp(18px, 5vw, 56px) clamp(40px, 8vw, 80px);
 }
 
 .grid {
@@ -325,20 +325,6 @@ body {
 .empty .lead {
   color: var(--red);
   font-weight: 500;
-}
-
-.colophon {
-  max-width: var(--maxw);
-  margin: clamp(40px, 8vw, 80px) auto 0;
-  padding: 20px clamp(18px, 5vw, 56px) 40px;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.5;
-}
-.colophon p {
-  margin: 0;
-  max-width: 56ch;
 }
 
 @media (prefers-reduced-motion: reduce) {
